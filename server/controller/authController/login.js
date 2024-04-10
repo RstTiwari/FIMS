@@ -74,7 +74,12 @@ const login = async (req, res, next, userDb, userPassworDb) => {
             { new: true }
         )
         .exec();
-    //if compnay logoneeded call api
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true, // Enable for HTTPS
+    }); 
+
     res.status(200).json({
         success: 1,
         result: {
@@ -84,7 +89,7 @@ const login = async (req, res, next, userDb, userPassworDb) => {
             email: user.email,
             photo: user.photo,
             token: token,
-            expiresIn: req.body.remember  ?  (365 * 86400) :( 86400 )
+            expiresIn: req.body.remember ? 365 * 86400 : 86400,
         },
         message: "Successfully login user",
     });

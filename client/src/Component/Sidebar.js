@@ -17,12 +17,11 @@ const Sidebar = () => {
           mode="inline"
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
-          style={{ height: "100vh", width: "20vw", borderRight: 0 ,textAlign:"left"}}
+          style={{ height: "100vh", width: "15vw", borderRight: 0 ,textAlign:"left"}}
           onClick={handleSideBarClick}
           theme="dark"
       >
           <Row
-              justify={"center"}
               style={{
                   height: "7vh",
                   backgroundColor: "#000",

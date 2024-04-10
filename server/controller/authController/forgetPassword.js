@@ -55,7 +55,6 @@ const forgetpassword = async (
                 userId: checkUserExist._id,
                 name: checkUserExist.name,
                 email: checkUserExist.email,
-                tenantId: checkUserExist.tenantId,
             },
             message: "Please Check your m mail and verify OTP",
         });
