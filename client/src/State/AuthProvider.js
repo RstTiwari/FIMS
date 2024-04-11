@@ -63,6 +63,7 @@ export const AuthProvider = ({ children }) => {
             return response;
         }
     };
+
     // const adminApiCall = async (method, path, data, params) => {
     //     const token = cookies["token"];
     //     let axiosConfig = {
@@ -96,53 +97,48 @@ export const AuthProvider = ({ children }) => {
     //     }
     // };
 
-    // const appApiCall = async (method, path, payload, params) => {
-    //     let token = cookies["token"];
-    //     let axiosConfig = {
-    //         url: myfac8ryBaseUrl + `app/${path}`,
-    //         method: method,
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Access-Control-Allow-Origin": "*",
-    //             token: token ? token : null,
-    //         },
-    //         data: payload ? payload : null,
-    //         params: params ? params : null,
-    //     };
+    const appApiCall = async (method, path, payload, params) => {
+        let token = cookies["token"];
+        let axiosConfig = {
+            url: myfac8ryBaseUrl + `app/${path}`,
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                token: token ? token : null,
+            },
+            data: payload ? payload : null,
+            params: params ? params : null,
+        };
 
-    //     if (payload instanceof FormData) {
-    //         axiosConfig.headers["Content-Type"] = "multipart/form-data";
-    //         axiosConfig.data = payload;
-    //     }
+        if (payload instanceof FormData) {
+            axiosConfig.headers["Content-Type"] = "multipart/form-data";
+            axiosConfig.data = payload;
+        }
 
-    //     try {
-    //         let response = await axios(axiosConfig);
-    //         return response.data;
-    //     } catch (error) {
-    //         let response = {
-    //             success: 0,
-    //             result: null,
-    //             message: error.response
-    //                 ? error.response.data.message
-    //                 : "NetWork Error",
-    //         };
-    //         return response;
-    //     }
-    // };
+        try {
+            let response = await axios(axiosConfig);
+            return response.data;
+        } catch (error) {
+            let response = {
+                success: 0,
+                result: null,
+                message: error.response
+                    ? error.response.data.message
+                    : "NetWork Error",
+            };
+            return response;
+        }
+    };
 
-    // const getDropDownData = async (entity, fieldName) => {
-    //     let data = await appApiCall("post", "getList", { entity: entity });
-    //     if (data.success === 0) {
-    //         return (data = []);
-    //     } else {
-    //         data = data.result.map((item) => {
-    //             item["label"] = item[fieldName];
-    //             item["value"] = item._id;
-    //             return item;
-    //         });
-    //         return data;
-    //     }
-    // };
+    const getDropDownData = async (entity,) => {
+        let data = await appApiCall("post", "getList", { entity: entity });
+        if (data.success === 0) {
+            return (data = []);
+        } else {  
+            return data;
+        }
+    };
 
     // const createData = async (payload) => {
     //     let data = await appApiCall("post", "create", payload);
@@ -263,9 +259,9 @@ export const AuthProvider = ({ children }) => {
                 loginUser,
                 logoutUser,
                 authApiCall,
-                // appApiCall,
+                appApiCall,
                 // adminApiCall,
-                // getDropDownData,
+                 getDropDownData,
                 // getTableData,
                 // createData,
                 // readData,

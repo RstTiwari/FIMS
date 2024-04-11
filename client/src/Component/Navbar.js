@@ -8,8 +8,8 @@ const { Text } = Typography;
 
 const { SubMenu } = Menu;
 const Navbar = () => {
-    const [cookies, setCookie] = useCookies(["token"]);
-    const {logoutUser} = useAuth()
+    const [cookies, setCookie] = useCookies([]);
+    const { logoutUser } = useAuth();
     const authData = cookies["authData"];
 
     return (
@@ -45,7 +45,9 @@ const Navbar = () => {
                     <Menu.Item key="profile">
                         <UserOutlined /> {authData.name.toUpperCase()}
                     </Menu.Item>
-                    <Menu.Item key="logout" onClick={()=>logoutUser()}>Logout</Menu.Item>
+                    <Menu.Item key="logout" onClick={() => logoutUser()}>
+                        Logout
+                    </Menu.Item>
                 </SubMenu>
             </Row>
         </Menu>

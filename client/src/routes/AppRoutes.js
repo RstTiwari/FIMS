@@ -12,6 +12,7 @@ const Approuter = ({userName,role}) => {
                     element={<Navigate to="/dashboard" replace />}
                 />
                 <Route path="/dashboard" exact element={<Dashbord />} />
+                
 
                 {/**In case some one acess login page after being logged in */}
                 <Route

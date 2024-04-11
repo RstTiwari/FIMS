@@ -9,14 +9,15 @@ import cookieParser from "cookie-parser";
 import https from "https";
 import http from "http"
 import fs from "fs";
-import {v2 as cloudinary} from "cloudinary"
+import xlsx from "xlsx";
+import partyModal from "../server/models/appModels/party.js";
 
 // import clientRoutes from "./routes/client.js";
 // import salesRoutes from "./routes/sales.js";
 // import generalRoutes from "./routes/general.js";
 // import managmentRoutes from "./routes/managment.js";
-import auth from "./routes/auth.js";
-// import appRoutes from "./routes/appRoutes.js";
+import auth from "./routes/authRoutes.js";
+import appRoutes from "./routes/appRoutes.js"
 
 // import cron from "./controller/CronController/Cron.js";
 // import adminRoutes from "./routes/adminRoutes.js";
@@ -43,7 +44,7 @@ app.use(cookieParser());
  */
 
 app.use("/auth", auth);
-// app.use("/app", appRoutes);
+app.use("/app", appRoutes)
 // app.use("/admin",adminRoutes)
 // app.use("/client", clientRoutes);
 // app.use("/sales", salesRoutes);
@@ -60,6 +61,7 @@ const Port = process.env.PORT || 5009;
 //     api_key: process.env.apiKey,
 //     api_secret: process.env.apiSecret,
 // });
+
 const MDURLSTRING = process.env.MDURL
 mongoose
   .connect(MDURLSTRING, {
@@ -88,3 +90,7 @@ mongoose
   .catch((e) => {
     console.log("Database connection failed" + e);
   });
+
+
+
+

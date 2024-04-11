@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu,Row } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined,HomeFilled ,Fun} from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,14 +8,17 @@ import { faTruckFast,faPerson,faAddressBook,faBoxArchive,faFile} from '@fortawes
 import homeicon from "../Assets/homeIcon.png"
 const { SubMenu } = Menu;
 
+
 const Sidebar = () => {
+    const [active,setActive] = useState("dashboard")
     const handleSideBarClick =(e)=>{
+        setActive(e)
      console.log(e);
     }
   return (
       <Menu
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[active]}
           defaultOpenKeys={["sub1"]}
           style={{ height: "100vh", width: "15vw", borderRight: 0 ,textAlign:"left"}}
           onClick={handleSideBarClick}
@@ -39,8 +42,8 @@ const Sidebar = () => {
           />
               <h1>FIMS</h1>
           </Row>
-          <Menu.Item key={"dashbord"} icon ={<HomeFilled/>}>DASHBORD</Menu.Item>
-          <SubMenu key="customer" icon={<FontAwesomeIcon icon= {faAddressBook}/>} title="CUSTOMER">
+          <Menu.Item key={"dashboard"} icon ={<HomeFilled/>}>DASHBORD</Menu.Item>
+          <SubMenu key="customer" icon={<FontAwesomeIcon icon= {faAddressBook}/>} title="CUSTOMERS">
               <Menu.Item key="1">Option 1</Menu.Item>
               <Menu.Item key="2">Option 2</Menu.Item>
               <Menu.Item key="3">Option 3</Menu.Item>
