@@ -1,4 +1,9 @@
 import dropDownData from "./dropdownData.js"
+import addDropDownData from "./addDropDownData.js";
+
+
+import  addExcellData  from "./addExcellData.js";
+
 
 const appController = {
     /**
@@ -10,6 +15,17 @@ const appController = {
     dropDownData: (req, res, next) => {
         dropDownData(req,res,next)
     },
+
+    addDropDownData:(req,res,next)=>{
+        addDropDownData(req,res,next)
+    },
+
+    /* 
+    Adding excell Datas
+    */
+    addExcellData:(req,res,next)=>{
+        addExcellData(req,res,next)
+     }
 
 };
 

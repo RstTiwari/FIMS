@@ -16,10 +16,10 @@ const getModelByEntity = (entity) => {
 };
 
 // Middleware function to dynamically pass models based on entities
-const databaseMiddleware = (req, res, next) => {
+const databaseMidleware = (req, res, next) => {
     try {
         // Entities for which you need models
-        const entities = req.body.entities;
+        const entity = req.body.entity;
 
         // Get models for each entity
         const Model = getModelByEntity(entity);
@@ -35,4 +35,4 @@ const databaseMiddleware = (req, res, next) => {
     }
 };
 
-export default databaseMiddleware;
+export default databaseMidleware;

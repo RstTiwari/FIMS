@@ -84,9 +84,17 @@ const data = [
     },
 ];
 
-export const addData = async () => {
+const addExcellData = async (req,res,next) => {
+    const database = req.database
     for (let item of data) {
-        const temData = new dropdownData(item);
+        console.log(item,database);
+        const temData = new database(item);
         await temData.save();
     }
+    res.status(200).json({
+        success:1,
+        data:[]
+    })
 };
+
+export default addExcellData

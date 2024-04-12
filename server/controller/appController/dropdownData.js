@@ -1,10 +1,11 @@
+import dropdownData from "../../models/appModels/dropdownData.js"; // as multiple enitity are there
 const dropDownData = async (req, res, next) => {
     try {
-        const database = req.database; // taking it from middleware
-        const data = await database.findAll();
+        const entity = req.body.entity;
+        const  data  = await dropdownData.findOne({ entity: entity }).select({data:1}).lean().exec();
         res.status(200).json({
             success: 1,
-            result: data,
+            result: data ? data.data : [],
             message: "Data Fetched Successfully",
         });
     } catch (error) {

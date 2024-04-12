@@ -20,7 +20,13 @@ const Sidebar = () => {
           mode="inline"
           defaultSelectedKeys={[active]}
           defaultOpenKeys={["sub1"]}
-          style={{ height: "100vh", width: "15vw", borderRight: 0 ,textAlign:"left"}}
+          style={{
+              height: "100vh",
+              width: "15vw",
+              borderRight: 0,
+              textAlign: "left",
+              position: "fixed",
+          }}
           onClick={handleSideBarClick}
           theme="dark"
       >
@@ -33,23 +39,33 @@ const Sidebar = () => {
                   color: "#fff",
               }}
           >
-               <img
-            src={homeicon}
-            alt="companylogo"
-            style={{
-              width: "2rem",
-            }}
-          />
+              <img
+                  src={homeicon}
+                  alt="companylogo"
+                  style={{
+                      width: "2rem",
+                  }}
+              />
               <h1>FIMS</h1>
           </Row>
-          <Menu.Item key={"dashboard"} icon ={<HomeFilled/>}>DASHBORD</Menu.Item>
-          <SubMenu key="customer" icon={<FontAwesomeIcon icon= {faAddressBook}/>} title="CUSTOMERS">
+          <Menu.Item key={"dashboard"} icon={<HomeFilled />}>
+              DASHBORD
+          </Menu.Item>
+          <SubMenu
+              key="customer"
+              icon={<FontAwesomeIcon icon={faAddressBook} />}
+              title="CUSTOMERS"
+          >
               <Menu.Item key="1">Option 1</Menu.Item>
               <Menu.Item key="2">Option 2</Menu.Item>
               <Menu.Item key="3">Option 3</Menu.Item>
               <Menu.Item key="4">Option 4</Menu.Item>
           </SubMenu>
-          <SubMenu key="vehilce" icon={<FontAwesomeIcon icon={faTruckFast} />} title="VEHICLE">
+          <SubMenu
+              key="vehilce"
+              icon={<FontAwesomeIcon icon={faTruckFast} />}
+              title="VEHICLE"
+          >
               <SubMenu key="sub3" title="Submenu 1">
                   <Menu.Item key="5">Option 5</Menu.Item>
                   <Menu.Item key="6">Option 6</Menu.Item>
@@ -59,19 +75,31 @@ const Sidebar = () => {
                   <Menu.Item key="8">Option 8</Menu.Item>
               </SubMenu>
           </SubMenu>
-          <SubMenu key="crew" icon={<FontAwesomeIcon icon={faPerson} />} title="CREW">
+          <SubMenu
+              key="crew"
+              icon={<FontAwesomeIcon icon={faPerson} />}
+              title="CREW"
+          >
               <Menu.Item key="9">Option 9</Menu.Item>
               <Menu.Item key="10">Option 10</Menu.Item>
               <Menu.Item key="11">Option 11</Menu.Item>
               <Menu.Item key="12">Option 12</Menu.Item>
           </SubMenu>
-          <SubMenu key="assets" icon={<FontAwesomeIcon icon={faBoxArchive} />} title="ASSETS">
+          <SubMenu
+              key="assets"
+              icon={<FontAwesomeIcon icon={faBoxArchive} />}
+              title="ASSETS"
+          >
               <Menu.Item key="9">Option 9</Menu.Item>
               <Menu.Item key="10">Option 10</Menu.Item>
               <Menu.Item key="11">Option 11</Menu.Item>
               <Menu.Item key="12">Option 12</Menu.Item>
           </SubMenu>
-          <SubMenu key="challan" icon={<FontAwesomeIcon icon={faFile} />} title="CHALLAN">
+          <SubMenu
+              key="challan"
+              icon={<FontAwesomeIcon icon={faFile} />}
+              title="CHALLAN"
+          >
               <Menu.Item key="9">Option 9</Menu.Item>
               <Menu.Item key="10">Option 10</Menu.Item>
               <Menu.Item key="11">Option 11</Menu.Item>

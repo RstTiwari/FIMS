@@ -10,12 +10,12 @@ const { Header, Sider, Content } = Layout;
 const HomeLayout = ({ userName, role }) => {
     return (
         <Row style={{ minHeight: "100vh" }}>
-            <Col width="20vw" style={{ minHeight: "100vh" }}>
+            <Col style={{width:"15vw"}}>
                 <Sidebar />
             </Col>
-            <Col style={{ width: "80vw" }}>
+            <Col style={{width:"80vw"}} >
                 <Navbar userName={userName} role={role} />
-                <Row style={{ padding: "1rem", overflowY: "auto" }}>
+                <Row style={{ padding: "3rem",  marginTop:"10vh",overflowY: "auto" }}>
                     <Outlet />
                 </Row>
             </Col>

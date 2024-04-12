@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Dashbord from "../Pages/Dashbord/Index.js";
 import Layout from "../Component/Layout";
+import AddParty from "Pages/Party/AddParty.js";
 
 const Approuter = ({userName,role}) => {
     return (
@@ -11,7 +12,7 @@ const Approuter = ({userName,role}) => {
                     path="/"
                     element={<Navigate to="/dashboard" replace />}
                 />
-                <Route path="/dashboard" exact element={<Dashbord />} />
+                <Route path="/dashboard" exact element={<AddParty />} />
                 
 
                 {/**In case some one acess login page after being logged in */}

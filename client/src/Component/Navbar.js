@@ -15,7 +15,14 @@ const Navbar = () => {
     return (
         <Menu
             mode="horizontal"
-            style={{ justifyContent: "center", alignItems: "center" }}
+            style={{
+                justifyContent: "right",
+                alignItems: "center",
+                position: "fixed",
+                zIndex: 2,
+                width:"80vw",
+                height:"7vh"
+            }}
         >
             <Row
                 justify={"center"}

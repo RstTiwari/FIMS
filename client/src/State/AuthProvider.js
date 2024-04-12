@@ -131,12 +131,21 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const getDropDownData = async (entity,) => {
-        let data = await appApiCall("post", "getList", { entity: entity });
+    const getDropDownData = async (entity) => {
+        let data = await appApiCall("post", "dropDownData", { entity: entity });
         if (data.success === 0) {
-            return (data = []);
-        } else {  
-            return data;
+            return ([]);
+        } else {
+            return data.result;
+        }
+    };
+
+    const addNewDropDownData = async (payload) => {
+        let data = await appApiCall("post", "addDropDownData", payload);
+        if (data.success === 0) {
+            return { success: 0, result: null, message: data.message };
+        } else {
+            return { success: 1, result: data.result, message: data.message };
         }
     };
 
@@ -262,6 +271,7 @@ export const AuthProvider = ({ children }) => {
                 appApiCall,
                 // adminApiCall,
                  getDropDownData,
+                 addNewDropDownData
                 // getTableData,
                 // createData,
                 // readData,
