@@ -1,44 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Select, Spin, Button, Divider, Modal, Input, Row } from "antd";
 
 import { useAuth } from "State/AuthProvider";
 import PageLoader from "./PageLoader";
 
-const CustomSelect = ({ entity, onChange, defaultSelect, newOption }) => {
-    const { getDropDownData ,addNewDropDownData} = useAuth();
+const CustomSelect = ({ entity, onChange, defaultSelect }) => {
+    const { getDropDownData, addNewDropDownData } = useAuth();
     const [options, setOptions] = useState([]);
     const [open, setOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);  // for Loader
-    const [addValue,setaddValue] = useState("")
-    const handleClick = async (value) => {
+    const [isLoading, setIsLoading] = useState(true); // for Loader
+    const [addValue, setaddValue] = useState("");
+    const [selected, SetSelected] = useState(defaultSelect);
+
+    const handleClick = async () => {
+        setIsLoading(true);
         const response = await getDropDownData(entity);
         setOptions(response);
         setIsLoading(false);
     };
 
-    const addNewOption = async()=>{
+    const addNewOption = async () => {
         const payload = {
-            entity:entity,
-            data:[
+            entity: entity,
+            data: [
                 {
-                    label:addValue,
-                    value:addValue
-                }
-            ]
+                    label: addValue,
+                    value: addValue,
+                },
+            ],
+        };
+        const response = await addNewDropDownData(payload);
+        if (response.success) {
+            setOptions(response.da);
+            setOpen(false);
+            SetSelected(addValue.toUpperCase());
+            // onChange(addValue); // Pre-select the newly added option
         }
-        const response = await addNewDropDownData(payload)
-        if(response.success){
-            defaultSelect= addValue.toLocaleLowerCase()
-            setOpen(!open)
+    };
 
-        }
-    }
-    
     return (
         <>
             {!open ? (
                 <Select
-                    defaultValue={defaultSelect ? defaultSelect : ""}
+                    defaultValue={selected ? selected : ""}
                     options={options}
                     onClick={() => handleClick()}
                     onChange={onChange}
@@ -54,9 +58,10 @@ const CustomSelect = ({ entity, onChange, defaultSelect, newOption }) => {
                     dropdownRender={(menu) => {
                         return (
                             <div>
-                                {menu}
                                 {!isLoading ? (
                                     <>
+                                        {menu}
+
                                         <Divider />
                                         <Button
                                             type="primary"
@@ -87,9 +92,16 @@ const CustomSelect = ({ entity, onChange, defaultSelect, newOption }) => {
                     keyboard={false}
                 >
                     <Row gutter={16}>
-                        <Input placeholder={`Enter new ${entity}`} onChange={(e)=>setaddValue(e.target.value)} />
+                        <Input
+                            placeholder={`Enter new ${entity}`}
+                            onChange={(e) => setaddValue(e.target.value)}
+                        />
                     </Row>
-                    <Button type="primary" style={{ marginTop: "1rem" }} onClick={addNewOption}>
+                    <Button
+                        type="primary"
+                        style={{ marginTop: "1rem" }}
+                        onClick={addNewOption}
+                    >
                         SAVE
                     </Button>
                 </Modal>

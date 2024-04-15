@@ -1,4 +1,5 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
+import mongooseAutoPopulate from "mongoose-autopopulate";
 
 const partySchema = new mongoose.Schema(
     {
@@ -14,38 +15,10 @@ const partySchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        addressLine1: {
-            type: String,
-            require: true,
-        },
-        addressLine2: {
-            type: String,
-            require: true,
-        },
-        addressLine3: {
-            type: String,
-        },
-        landmark: {
-            type: String,
-        },
-        city: {
-            type: String,
-            require: true,
-        },
-        state: {
-            type: String,
-            require: true,
-        },
-        country: {
-            type: String,
-            require: true,
-        },
-        pinCode: {
-            type: Number,
-            require: true,
-        },
-        stdCode: {
-            type: Number,
+        address: {
+            type: mongoose.Schema.ObjectId,
+            ref: "address",
+            required: true,
         },
         telPhone1: {
             type: Number,
@@ -96,5 +69,5 @@ const partySchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-
-export default mongoose.model("party", partySchema,"party");
+partySchema.plugin(mongooseAutoPopulate);
+export default mongoose.model("party", partySchema, "party");

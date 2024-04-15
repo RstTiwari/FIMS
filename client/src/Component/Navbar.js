@@ -29,9 +29,9 @@ const Navbar = () => {
                 align={"middle"}
                 style={{ flexGrow: 1, textAlign: "center" }}
             >
-                <Text type="success" style={{ fontSize: "1.5rem" }}>
+                {/* <Text type="success" style={{ fontSize: "1.5rem" }}>
                     Light and Grips Equipment Hirers (India) Pvt. Ltd
-                </Text>
+                </Text> */}
             </Row>
             <Row justify={"center"} align={"middle"}>
                 <Avatar

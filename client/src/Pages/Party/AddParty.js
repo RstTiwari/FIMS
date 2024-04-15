@@ -2,12 +2,12 @@ import PageHeader from "Component/PageHeader";
 import SaveButton from "Component/SaveButton";
 import PartyForm from "Form/AppForm/PartyForm";
 import React from "react";
-
+import PartyFormFileds from "Data/FormFileds/Party";
 const AddParty = () => {
     return (
         <div style={{}}>
             <PageHeader  title={"ADD NEW PARTY"} />
-            <PartyForm  />
+            <PartyForm   fields = {PartyFormFileds}/>
         </div>
     );
 };

@@ -1,44 +1,155 @@
-import React from "react";
-import { Form, Row, Col, Input, Select, Button } from "antd";
-import PartyFormFileds from "Data/Form/Party";
+import React, { useState, useEffect } from "react";
+import { Form, Row, Col, Input, Select, Button, DatePicker } from "antd";
+import PartyFormFileds from "Data/FormFileds/Party.js";
+import addressFormFiled from "Data/FormFileds/Address";
 import CustomSelect from "Component/CustomSelect";
 import SaveButton from "Component/SaveButton";
 
-const PartyForm = () => {
-    const handleFormFinsih =(value)=>{
-        console.log(value);
-    }
-    const handleValueChange =(newValue,oldValue)=>{
-        console.log(newValue,oldValue);
-    }
+const PartyForm = ({ fields }) => {
+    const [form] = Form.useForm();
+    const [initialValue, setInitialValue] = useState({
+        partyType: "Rohit",
+        firmType: "NEW0",
+        mobNumber1: 12345,
+        address: {
+            addressLine1: "theee LOvlkush kuamr vvlaue  ",
+            addressLine2: "thee nEw Type",
+            addressLine3: "let ttssso ds         jdsjjjejewj",
+            landmark: "",
+            city: "mumbai",
+            state: "maharastra",
+            country: "india",
+            pinCode: "20039393",
+        },
+    });
+
+    useEffect(() => {
+        console.log("Initial Value:", initialValue);
+    }, [initialValue]);
+
+    const handleFormFinish = (value) => {
+        console.log("Form Values:", value);
+    };
+
+    const handleValueChange = (changedValues, allValues) => {
+        console.log("Changed Values:", changedValues);
+        console.log("All Values:", allValues);
+        setInitialValue(allValues);
+    };
 
     return (
-        <>
-            <Form onFinish={handleFormFinsih} onValuesChange={handleValueChange}>
-                <Row gutter={16}>
-                    {PartyFormFileds.map((field) => (
-                        <Col span={12} key={field.name}>
-                            <Form.Item
-                                key={field.name}
-                                label={field.label}
-                                name={field.name}
-                                rules={field.rules}
-                                labelAlign="left"
-                                labelCol={{span:6}}
-                                
-                            >
-                                {field.type === "select" ? (
-                                    <CustomSelect  entity={field.name}  onChange={handleValueChange}/>
-                                ) : (
-                                    <Input />
-                                )}
-                            </Form.Item>
-                        </Col>
-                    ))}
-                </Row>
-                <SaveButton buttonText={"Save"}  cancelRoute={"dashboard"}/>
-            </Form>
-        </>
+        <Form
+            form={form}
+            onFinish={handleFormFinish}
+            initialValues={initialValue}
+            onValuesChange={handleValueChange}
+        >
+            <Row gutter={16}>
+                {fields.map((field) => (
+                    <Col
+                        span={field.type === "subchild" ? 24 : 12}
+                        key={field.name}
+                    >
+                        <Form.Item
+                            label={field.label}
+                            name={field.name}
+                            rules={field.rules}
+                            labelAlign="left"
+                            labelCol={{ span: 6 }}
+                        >
+                            {field.type === "select" ? (
+                                <CustomSelect
+                                    entity={field.name}
+                                    onChange={(value) =>
+                                        handleValueChange(
+                                            { [field.name]: value },
+                                            {
+                                                ...initialValue,
+                                                [field.name]: value,
+                                            }
+                                        )
+                                    }
+                                    defaultSelect={initialValue[field.name]}
+                                />
+                            ) : field.type === "input" ? (
+                                <Input />
+                            ) : field.type === "date" ? (
+                                <DatePicker />
+                            ) : field.type === "subchild" ? (
+                                <>
+                                    <Row gutter={16} justify="start">
+                                        {field.subchild.map((subField) => (
+                                            <Col span={12} key={subField.name}>
+                                                <Form.Item
+                                                    label={subField.label}
+                                                    name={subField.name}
+                                                    rules={subField.rules}
+                                                    labelAlign="left"
+                                                    labelCol={{ span: 24 }}
+                                                >
+                                                    {subField.type ===
+                                                    "select" ? (
+                                                        <CustomSelect
+                                                            entity={
+                                                                subField.name
+                                                            }
+                                                            onChange={(value) =>
+                                                                handleValueChange(
+                                                                    {
+                                                                        [subField.name]:
+                                                                            value,
+                                                                    },
+                                                                    {
+                                                                        ...initialValue,
+                                                                        address:
+                                                                            {
+                                                                                ...initialValue.address,
+                                                                                [subField.name]:
+                                                                                    value,
+                                                                            },
+                                                                    }
+                                                                )
+                                                            }
+                                                            defaultSelect={
+                                                                initialValue &&
+                                                                initialValue.address
+                                                                    ? initialValue
+                                                                          .address[
+                                                                          subField
+                                                                              .name
+                                                                      ]
+                                                                    : ""
+                                                            }
+                                                        />
+                                                    ) : subField.type ===
+                                                      "input" ? (
+                                                        <Input
+                                                            defaultValue={
+                                                                initialValue &&
+                                                                initialValue.address
+                                                                    ? initialValue
+                                                                          .address[
+                                                                          subField
+                                                                              .name
+                                                                      ]
+                                                                    : ""
+                                                            }
+                                                        />
+                                                    ) : (
+                                                        "null"
+                                                    )}
+                                                </Form.Item>
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                </>
+                            ) : null}
+                        </Form.Item>
+                    </Col>
+                ))}
+            </Row>
+            <SaveButton buttonText={"Save"} cancelRoute={"dashboard"} />
+        </Form>
     );
 };
 

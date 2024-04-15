@@ -8,8 +8,10 @@ const addDropDownData = async (req, res, next) => {
         const existData = await dropdownData.findOne({ entity: entity });
         if (existData) {
             const newData = payload.data[0];
+            newData.label = newData.label.toUpperCase(); // making it proper case before updating
+            newData.value = newData.value.toLowerCase   (); // making it proper case before updating
             const updateObj = {
-                $push: { data:  newData },
+                $push: { data: newData },
             };
             const updateData = await dropdownData.updateOne(
                 { entity: entity },

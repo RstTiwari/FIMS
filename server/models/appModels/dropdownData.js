@@ -16,11 +16,14 @@ const dropDownDataSchema = new mongoose.Schema(
 
 //PreSaving method for This Schema
 dropDownDataSchema.pre("save", function (next) {
-    this.data.forEach((item) => {
-        item.label = item.label.toUpperCase();
-        item.value = item.label.toLowerCase();
-        next();
+    const data = this.data;
+    data.forEach((item, index) => {
+        // Modify each item in the data array
+        data[index].label = item.label.toUpperCase();
+        data[index].value = item.value.toLowerCase();
     });
+    // After modifying all items, call next to continue with the save operation
+    next();
 });
 export default mongoose.model(
     "dropdownData",
