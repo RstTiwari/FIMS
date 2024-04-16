@@ -8,7 +8,7 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
     const { getDropDownData, addNewDropDownData } = useAuth();
     const [options, setOptions] = useState([]);
     const [open, setOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // for Loader
+    const [isLoading, setIsLoading] = useState(false); // for Loader
     const [addValue, setaddValue] = useState("");
     const [selected, SetSelected] = useState(defaultSelect);
 
@@ -44,7 +44,7 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
                 <Select
                     defaultValue={selected ? selected : ""}
                     options={options}
-                    onClick={() => handleClick()}
+                    onClick={handleClick}
                     onChange={onChange}
                     notFoundContent={
                         isLoading ? (

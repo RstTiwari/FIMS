@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Row, Col, Input, Select, Button, DatePicker } from "antd";
-import PartyFormFileds from "Data/FormFileds/PartyFiled.js";
+
 import CustomSelect from "Component/CustomSelect";
 import SaveButton from "Component/SaveButton";
+import CrewFormFiled from "Data/FormFileds/CrewFiled";
 
-const PartyForm = ({ fields }) => {
+const CrewForm = ({ field }) => {
     const [form] = Form.useForm();
     const [initialValue, setInitialValue] = useState({
         partyType: "Rohit",
@@ -44,19 +45,15 @@ const PartyForm = ({ fields }) => {
             onValuesChange={handleValueChange}
         >
             <Row gutter={16}>
-                {fields.map((field) => (
-                    <Col
-                        span={field.type === "subchild" ? 24 : 12}
-                        key={field.name}
-                    >
+                {CrewFormFiled.map((field) => (
+                    <Col span={12} key={field.name}>
                         <Form.Item
                             label={field.label}
                             name={field.name}
                             rules={field.rules}
                             labelAlign="left"
-                            labelCol={{ span: 8 }}
+                            labelCol={{ span: 6 }}
                         >
-                            {field.multiObject}
                             {field.type === "select" ? (
                                 <CustomSelect
                                     entity={field.name}
@@ -85,4 +82,4 @@ const PartyForm = ({ fields }) => {
     );
 };
 
-export default PartyForm;
+export default CrewForm;

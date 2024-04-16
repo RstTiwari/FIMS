@@ -15,9 +15,34 @@ const partySchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        address: {
-            type: mongoose.Schema.ObjectId,
-            ref: "address",
+        addressLine1: {
+            type: String,
+            required: true,
+        },
+        addressLine2: {
+            type: String,
+            required: true,
+        },
+        addressLine3: {
+            type: String,
+        },
+        landmark: {
+            type: String,
+        },
+        city: {
+            type: String,
+            required: true,
+        },
+        state: {
+            type: String,
+            required: true,
+        },
+        country: {
+            type: String,
+            required: true,
+        },
+        pinCode: {
+            type: Number,
             required: true,
         },
         telPhone1: {

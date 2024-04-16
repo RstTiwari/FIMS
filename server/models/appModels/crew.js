@@ -29,15 +29,68 @@ const crewSchema = new Schema.mongoose(
             required: true,
         },
         permanentAdress: {
-            type: mongoose.Schema.ObjectId,
-            ref: "address",
-            required: true,
-            autopopulate: true,
+            addressLine1: {
+                type: String,
+                required: true,
+            },
+            addressLine2: {
+                type: String,
+                required: true,
+            },
+            addressLine3: {
+                type: String,
+            },
+            landmark: {
+                type: String,
+            },
+            city: {
+                type: String,
+                required: true,
+            },
+            state: {
+                type: String,
+                required: true,
+            },
+            country: {
+                type: String,
+                required: true,
+            },
+            pinCode: {
+                type: Number,
+                required: true,
+            },
         },
         currentAddress: {
-            type: mongoose.Schema.ObjectId,
-            ref: "address",
-            autopopulate: true,
+            addressLine1: {
+                type: String,
+                required: true,
+            },
+            addressLine2: {
+                type: String,
+                required: true,
+            },
+            addressLine3: {
+                type: String,
+            },
+            landmark: {
+                type: String,
+            },
+            city: {
+                type: String,
+                required: true,
+            },
+            state: {
+                type: String,
+                required: true,
+            },
+            country: {
+                type: String,
+                required: true,
+            },
+            pinCode: {
+                type: Number,
+                required: true,
+            },
         },
         telPhone1: {
             type: Number,
