@@ -44,7 +44,7 @@ const PartyForm = ({ fields }) => {
             onValuesChange={handleValueChange}
         >
             <Row gutter={16}>
-                {fields.map((field) => (
+                {PartyFormFileds.map((field) => (
                     <Col
                         span={field.type === "subchild" ? 24 : 12}
                         key={field.name}
@@ -56,7 +56,6 @@ const PartyForm = ({ fields }) => {
                             labelAlign="left"
                             labelCol={{ span: 8 }}
                         >
-                            {field.multiObject}
                             {field.type === "select" ? (
                                 <CustomSelect
                                     entity={field.name}

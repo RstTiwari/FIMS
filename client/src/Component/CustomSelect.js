@@ -12,13 +12,17 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
     const [addValue, setaddValue] = useState("");
     const [selected, SetSelected] = useState(defaultSelect);
 
+   
     const handleClick = async () => {
         setIsLoading(true);
         const response = await getDropDownData(entity);
         setOptions(response);
-        setIsLoading(false);
     };
-
+  
+    const handleChange = (value, label) => {
+        onChange(value);
+        SetSelected(value);
+    };
     const addNewOption = async () => {
         const payload = {
             entity: entity,
@@ -31,13 +35,14 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
         };
         const response = await addNewDropDownData(payload);
         if (response.success) {
-            setOptions(response.da);
+            handleClick();
+            SetSelected(addValue.toLowerCase());
+            onChange(addValue.toLowerCase());
             setOpen(false);
-            SetSelected(addValue.toUpperCase());
-            // onChange(addValue); // Pre-select the newly added option
         }
     };
 
+    
     return (
         <>
             {!open ? (
@@ -45,7 +50,7 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
                     defaultValue={selected ? selected : ""}
                     options={options}
                     onClick={handleClick}
-                    onChange={onChange}
+                    onChange={handleChange}
                     notFoundContent={
                         isLoading ? (
                             <Spin
@@ -58,24 +63,20 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
                     dropdownRender={(menu) => {
                         return (
                             <div>
-                                {!isLoading ? (
-                                    <>
-                                        {menu}
+                                {menu}
 
-                                        <Divider />
-                                        <Button
-                                            type="primary"
-                                            style={{
-                                                margin: "0.1rem",
-                                            }}
-                                            onClick={() => setOpen(!open)}
-                                        >
-                                            Add New
-                                        </Button>
-                                    </>
-                                ) : (
-                                    ""
-                                )}
+                                <>
+                                    <Divider />
+                                    <Button
+                                        type="primary"
+                                        style={{
+                                            margin: "0.1rem",
+                                        }}
+                                        onClick={() => setOpen(!open)}
+                                    >
+                                        Add New
+                                    </Button>
+                                </>
                             </div>
                         );
                     }}
