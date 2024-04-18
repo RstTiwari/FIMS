@@ -4,35 +4,18 @@ import PartyFormFileds from "Data/FormFileds/PartyFiled.js";
 import CustomSelect from "Component/CustomSelect";
 import SaveButton from "Component/SaveButton";
 
-const PartyForm = ({ fields }) => {
+const PartyForm = ({ onFormFinish ,partyData}) => {
     const [form] = Form.useForm();
-    const [initialValue, setInitialValue] = useState({
-        partyType: "Rohit",
-        firmType: "NEW0",
-        mobNumber1: 12345,
-        address: {
-            addressLine1: "theee LOvlkush kuamr vvlaue  ",
-            addressLine2: "thee nEw Type",
-            addressLine3: "let ttssso ds         jdsjjjejewj",
-            landmark: "",
-            city: "mumbai",
-            state: "maharastra",
-            country: "india",
-            pinCode: "20039393",
-        },
-    });
+    const [initialValue, setInitialValue] = useState(partyData ? partyData:"")
 
     useEffect(() => {
-        console.log("Initial Value:", initialValue);
     }, [initialValue]);
 
     const handleFormFinish = (value) => {
-        console.log("Form Values:", value);
+         onFormFinish(value);
     };
 
     const handleValueChange = (changedValues, allValues) => {
-        console.log("Changed Values:", changedValues);
-        console.log("All Values:", allValues);
         setInitialValue(allValues);
     };
 

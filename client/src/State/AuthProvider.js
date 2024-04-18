@@ -149,14 +149,14 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // const createData = async (payload) => {
-    //     let data = await appApiCall("post", "create", payload);
-    //     if (data.success === 0) {
-    //         return { success: 0, result: null, message: data.message };
-    //     } else {
-    //         return { success: 1, result: data.result, message: data.message };
-    //     }
-    // };
+    const createData = async (payload) => {
+        let data = await appApiCall("post", "create", payload);
+        if (data.success === 0) {
+            return { success: 0, result: null, message: data.message };
+        } else {
+            return { success: 1, result: data.result, message: data.message };
+        }
+    };
 
     // const readData = async (params) => {
     //     let data = await appApiCall("get", "read", {}, params);
@@ -271,9 +271,9 @@ export const AuthProvider = ({ children }) => {
                 appApiCall,
                 // adminApiCall,
                  getDropDownData,
-                 addNewDropDownData
+                 addNewDropDownData,
                 // getTableData,
-                // createData,
+                createData,
                 // readData,
                 // updateData,
                 // pdfGenrate,

@@ -4,7 +4,7 @@ import { Select, Spin, Button, Divider, Modal, Input, Row } from "antd";
 import { useAuth } from "State/AuthProvider";
 import PageLoader from "./PageLoader";
 
-const CustomSelect = ({ entity, onChange, defaultSelect }) => {
+const CustomSelect = ({ entity, onChange, defaultSelect,form }) => {
     const { getDropDownData, addNewDropDownData } = useAuth();
     const [options, setOptions] = useState([]);
     const [open, setOpen] = useState(false);
@@ -12,13 +12,16 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
     const [addValue, setaddValue] = useState("");
     const [selected, SetSelected] = useState(defaultSelect);
 
-   
+    useEffect(() => {
+        handleClick();
+    }, [selected,form]);
+
     const handleClick = async () => {
         setIsLoading(true);
         const response = await getDropDownData(entity);
         setOptions(response);
     };
-  
+
     const handleChange = (value, label) => {
         onChange(value);
         SetSelected(value);
@@ -42,7 +45,6 @@ const CustomSelect = ({ entity, onChange, defaultSelect }) => {
         }
     };
 
-    
     return (
         <>
             {!open ? (

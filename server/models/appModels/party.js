@@ -5,23 +5,23 @@ const partySchema = new mongoose.Schema(
     {
         partyType: {
             type: String,
-            require: true,
+            required: true,
         },
         firmType: {
             type: String,
-            require: true,
+            required: true,
         },
         partyName: {
             type: String,
-            require: true,
+            required: true,
         },
         addressLine1: {
             type: String,
-            required: true,
+            requiredd: true,
         },
         addressLine2: {
             type: String,
-            required: true,
+            requiredd: true,
         },
         addressLine3: {
             type: String,
@@ -31,19 +31,19 @@ const partySchema = new mongoose.Schema(
         },
         city: {
             type: String,
-            required: true,
+            requiredd: true,
         },
         state: {
             type: String,
-            required: true,
+            requiredd: true,
         },
         country: {
             type: String,
-            required: true,
+            requiredd: true,
         },
         pinCode: {
             type: Number,
-            required: true,
+            requiredd: true,
         },
         telPhone1: {
             type: Number,
@@ -53,19 +53,23 @@ const partySchema = new mongoose.Schema(
         },
         countryCode: {
             type: Number,
-            require: true,
+            required: true,
         },
         mobNumber1: {
             type: Number,
-            require: true,
+            required: true,
+            unique:true
         },
         mobNumber2: {
             type: Number,
-            require: true,
+            required: true,
+            unique:true
+
         },
         emailId1: {
             type: String,
-            require: true,
+            required: true,
+            unique:true
         },
         emailId2: {
             type: String,
@@ -78,11 +82,13 @@ const partySchema = new mongoose.Schema(
         },
         gstNo: {
             type: String,
-            require: true,
+            required: true,
+            unique:true
         },
         panNo: {
             type: String,
-            require: true,
+            required: true,
+            unique:true
         },
         tanNo: {
             type: String,

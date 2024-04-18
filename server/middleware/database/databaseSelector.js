@@ -25,7 +25,7 @@ const databaseMidleware = (req, res, next) => {
         const Model = getModelByEntity(entity);
 
         // Attach the models object to the request object for use in route handlers
-        req.database = Model;
+        req.model = Model;
 
         // Proceed to the next middleware or route handler
         next();

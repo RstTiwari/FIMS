@@ -1,49 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Row, Col, Checkbox, DatePicker, Divider } from "antd";
+import {
+    Form,
+    Input,
+    Button,
+    Row,
+    Col,
+    Checkbox,
+    DatePicker,
+    Divider,
+} from "antd";
 import CrewFormFiled from "../../Data/FormFileds/CrewFiled";
 import CustomSelect from "Component/CustomSelect";
 import SaveButton from "Component/SaveButton";
 
-const CrewForm = () => {
+const CrewForm = ({ onFormFinish, crewData }) => {
     const [form] = Form.useForm();
 
-    const [initialValue, setInitialValue] = useState({
-        crewType: "EMPLOYED",
-        designation: "GAFFER",
-        permanetAddress: {
-            state: "bihar",
-            country: "india",
-        },
-    });
+    const [initialValue, setInitialValue] = useState(crewData ? crewData : "");
 
     const handleFormFinish = (value) => {
-        console.log("Form Values:", value);
+        onFormFinish(value);
     };
 
     const handleValueChange = (changedValues, allValues) => {
-        console.log("Changed Values:", changedValues);
-        console.log("All Values:", allValues);
         setInitialValue({ ...initialValue, changedValues: changedValues });
     };
 
     const copyAddress = (target) => {
         const checked = target.target.checked;
-        const formData = form.getFieldsValue();
+        const permanetAddress = form.getFieldValue("permanetAddress");
         if (checked) {
-            form.setFieldsValue({ currentAddress: formData.permanetAddress });
+            form.setFieldsValue({ currentAddress: permanetAddress });
         } else {
-            form.setFieldsValue({ currentAddress: {} });
+            form.setFieldsValue({ currentAddress: "" });
         }
+        const formData = form.getFieldsValue("");
+        setInitialValue(formData);
+        console.log(initialValue);
     };
-    useEffect(()=>{
-
-    },[copyAddress])
+    useEffect(() => {}, [initialValue, form]);
     return (
         <Form
             form={form}
             onFinish={handleFormFinish}
             layout="horizontal"
             style={{ marginBottom: "5vh" }}
+            initialValues={initialValue}
         >
             <Row style={{ width: "70vw" }} gutter={16}>
                 {Object.keys(CrewFormFiled).map((key) => {
@@ -71,9 +73,10 @@ const CrewForm = () => {
                                                 )
                                             }
                                             defaultSelect={initialValue[key]}
+                                            form={form}
                                         />
                                     ) : value.type === "date" ? (
-                                        <DatePicker />
+                                        <DatePicker  format={value.format} />
                                     ) : value.type === "input" ? (
                                         <Input />
                                     ) : null}
@@ -188,7 +191,6 @@ const CrewForm = () => {
                                     </React.Fragment>
                                 ))}
                                 <Divider />
-
                             </>
                         );
                     }

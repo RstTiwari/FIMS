@@ -15,7 +15,7 @@ export default function NotFound({ entity = "" }) {
                     <Button
                         type="primary"
                         onClick={() => {
-                            navigate(`/${entity?.toLowerCase()}`);
+                            window.location.replace("/")
                         }}
                     >
                         {"Back"}

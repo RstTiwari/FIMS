@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import mongooseAutoPopulate from "mongoose-autopopulate";
 
-const crewSchema = new Schema.mongoose(
+const crewSchema = new mongoose.Schema(
     {
         crewType: {
             type: String,
@@ -28,7 +28,7 @@ const crewSchema = new Schema.mongoose(
             type: String,
             required: true,
         },
-        permanentAdress: {
+        permanentAddress: {
             addressLine1: {
                 type: String,
                 required: true,
@@ -128,14 +128,12 @@ const crewSchema = new Schema.mongoose(
         },
         memberShipValidUpto: {
             type: Number,
-            required: true,
         },
         drivingLicenceNo: {
             type: Number,
         },
         drivingLicenceType: {
             type: String,
-            required: true,
         },
         drvingLiceneValidUpto: {
             type: Number,
@@ -167,5 +165,4 @@ const crewSchema = new Schema.mongoose(
     { timeStamp: true }
 );
 
-crewSchema.plugin(mongooseAutoPopulate);
 export default mongoose.model("crew", crewSchema, "crew");

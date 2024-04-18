@@ -2,12 +2,17 @@ import PageHeader from "Component/PageHeader";
 import SaveButton from "Component/SaveButton";
 import PartyForm from "Form/AppForm/PartyForm";
 import React from "react";
-import PartyFormFileds from "Data/FormFileds/PartyFiled";
+import UseFormSubmission from "CutomHooks/UseFormSubmission";
 const AddParty = () => {
+    const handleSubmit = UseFormSubmission();
+    const onFormFinish = async(value) => {
+        await handleSubmit("party", value, );
+    };
+
     return (
         <div style={{}}>
             <PageHeader title={"ADD NEW PARTY"} />
-            <PartyForm fields={PartyFormFileds} />
+            <PartyForm onFormFinish={onFormFinish} partyData={null} />
         </div>
     );
 };

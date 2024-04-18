@@ -22,13 +22,14 @@ import homeicon from "../Assets/homeIcon.png";
 const { SubMenu } = Menu;
 const Sidebar = () => {
     const navigate = useNavigate();
+
     const handleSideBarClick = (e) => {
         navigate(`/${e.key}`);
     };
     return (
         <Menu
             mode="inline"
-            defaultSelectedKeys={[window.location.pathname.split("/")[1]]}
+            defaultSelectedKeys={["dashboard"]}
             style={{
                 height: "100vh",
                 width: "15vw",
@@ -61,10 +62,10 @@ const Sidebar = () => {
                 DASHBORD
             </Menu.Item>
             <Menu.Item
-                key="customer"
+                key="party"
                 icon={<FontAwesomeIcon icon={faAddressBook} />}
             >
-                CUSTOMERS
+                PARTY
             </Menu.Item>
             <Menu.Item
                 key="vehilce"

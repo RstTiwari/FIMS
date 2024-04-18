@@ -138,7 +138,7 @@ const PartyFormFileds = [
         type: "input",
         rules: [
             {
-                require: true,
+                required: true,
                 message: "Pleae Input PANNO",
             },
         ],

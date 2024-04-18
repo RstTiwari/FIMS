@@ -24,11 +24,22 @@ const CrewFormFiled = {
     },
     dob: {
         label: "DATE OF BIRTH",
-        type: "input",
+        type: "date",
+        format: "DD-MM-YYYY",
     },
-    firmName: { name: "firmName", label: "FIRM NAME", type: "input" },
+    firmName: {
+        name: "firmName",
+        label: "FIRM NAME",
+        type: "input",
+        rules: [
+            {
+                required: true,
+                message: "Please input your ADDRESSLINE 1  ",
+            },
+        ],
+    },
 
-    permanetAddress: [
+    permanentAddress: [
         {
             addressLine1: {
                 label: "ADDRESSLINE 1 ",
@@ -57,12 +68,6 @@ const CrewFormFiled = {
             addressLine3: {
                 label: "ADDRESSLINE 3",
                 type: "input",
-                rules: [
-                    {
-                        required: true,
-                        message: "Please input your ADDRESSLINE3 ",
-                    },
-                ],
             },
         },
         {
@@ -99,7 +104,7 @@ const CrewFormFiled = {
             },
         },
         {
-            pincode: {
+            pinCode: {
                 name: ["permanentAddress", "pincode"],
                 label: "PINCODE",
                 type: "input",
@@ -138,12 +143,6 @@ const CrewFormFiled = {
             addressLine3: {
                 label: "ADDRESSLINE 3",
                 type: "input",
-                rules: [
-                    {
-                        required: true,
-                        message: "Please input your ADDRESSLINE3 ",
-                    },
-                ],
             },
         },
         {
@@ -180,7 +179,7 @@ const CrewFormFiled = {
             },
         },
         {
-            pincode: {
+            pinCode: {
                 name: ["permanentAddress", "pincode"],
                 label: "PINCODE",
                 type: "input",

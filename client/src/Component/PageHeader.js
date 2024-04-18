@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Row, Col, Button, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faClose,faAdd } from "@fortawesome/free-solid-svg-icons";
 
 const PageHeader = ({
     title,
@@ -14,17 +14,15 @@ const PageHeader = ({
 }) => {
     const windowWidth = window.innerWidth;
     const onCloseClick = () => {
-        navigate(`/${cancelRoute}`);
+       const  route =  cancelRoute ? cancelRoute :"dashboard"
+        navigate(`/${route}`);
     };
     const navigate = useNavigate();
     const onAddClick = () => {
-        navigate(`/${addRoute}`);
-    };
-    const refreshThePageOnly = (localDataKey) => {
-        // removeLocalData(`${localDataKey}`);
+        navigate(`/add/${addRoute}`);
     };
 
-    const titleSpane = subTitle ? 15 : addRoute ? 15 : refresh ? 18 : 21;
+    const titleSpane = subTitle ? 15 :20
     const isLaptop = true;
     const fontSize = isLaptop ? "1.3rem" : "0.7rem";
 
@@ -37,13 +35,12 @@ const PageHeader = ({
                     zIndex: 1000,
                     position: "fixed",
                     top: "7vh",
-                    width:"85vw",
+                    width: "85vw",
                 }}
-            >   
-                
-                <Col xs={6} sm={3} md={2} lg={2} >
+            >
+                <Col xs={6} sm={3} md={2} lg={1}>
                     <FontAwesomeIcon
-                        icon={faBackward}
+                        icon={faClose}
                         onClick={onCloseClick}
                         style={{
                             cursor: "pointer",
@@ -58,36 +55,22 @@ const PageHeader = ({
                     md={12}
                     lg={titleSpane}
                     style={{
-                        color: "#4285F4",
                         fontSize: fontSize,
-                        textAlign: "left",
-                        
+                        textAlign: "center",
                     }}
                 >
                     {title.toUpperCase()}
                 </Col>
-                {refresh ? (
-                    <Col xs={6} sm={12} md={6} lg={3}>
-                        <Button
-                            onClick={() => {
-                                refreshThePageOnly(localDataKey);
-                            }}
-                        >
-                            Refresh
-                        </Button>
-                    </Col>
-                ) : (
-                    ""
-                )}
                 {subTitle && windowWidth >= 992 ? (
                     <>
-                        <Col xs={6} sm={12} md={6} lg={2}>
+                        <Col xs={6} sm={12} md={6} lg={8}>
                             <Button
+                                 icon ={<FontAwesomeIcon icon={faAdd} />}
                                 onClick={onAddClick}
-                                type="primary"
-                                style={{ fontSize: "0.7rem" }}
+                                type="link"
+                                style={{ fontSize: "1rem" }}
                             >
-                                {subTitle}
+                                {subTitle.toUpperCase()}
                             </Button>
                         </Col>
                     </>
