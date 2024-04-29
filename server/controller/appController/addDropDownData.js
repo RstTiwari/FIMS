@@ -1,11 +1,14 @@
-import dropdownData from "../../models/appModels/dropdownData.js";
+import databaseSelector from "../../helper/database/databaseSelector.js";
 const addDropDownData = async (req, res, next) => {
     try {
         const payload = req.body;
         const entity = payload.entity;
 
+        // selecting database dynamically 
+        const database = databaseSelector("dropdownData")
+
         // check if the Same entity exist
-        const existData = await dropdownData.findOne({ entity: entity });
+        const existData = await database.findOne({ entity: entity });
         if (existData) {
             const newData = payload.data[0];
             newData.label = newData.label.toUpperCase(); // making it proper case before updating
@@ -13,7 +16,7 @@ const addDropDownData = async (req, res, next) => {
             const updateObj = {
                 $push: { data: newData },
             };
-            const updateData = await dropdownData.updateOne(
+            const updateData = await database.updateOne(
                 { entity: entity },
                 updateObj
             );

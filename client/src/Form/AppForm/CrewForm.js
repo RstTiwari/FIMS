@@ -28,7 +28,8 @@ const CrewForm = ({ onFormFinish, crewData }) => {
 
     const copyAddress = (target) => {
         const checked = target.target.checked;
-        const permanetAddress = form.getFieldValue("permanetAddress");
+        const permanetAddress = form.getFieldValue("permanentAddress");
+        console.log(permanetAddress,"---per");
         if (checked) {
             form.setFieldsValue({ currentAddress: permanetAddress });
         } else {

@@ -21,15 +21,15 @@ import {
 import homeicon from "../Assets/homeIcon.png";
 const { SubMenu } = Menu;
 const Sidebar = () => {
-    const navigate = useNavigate();
-
+    const navigate = useNavigate()
     const handleSideBarClick = (e) => {
         navigate(`/${e.key}`);
     };
+    console.log(window.location.pathname);
     return (
         <Menu
             mode="inline"
-            defaultSelectedKeys={["dashboard"]}
+            defaultSelectedKeys={[window.location.pathname.split("/")[1]]}
             style={{
                 height: "100vh",
                 width: "15vw",

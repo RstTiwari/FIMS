@@ -1,6 +1,7 @@
 import dropDownData from "./dropdownData.js"
 import addDropDownData from "./addDropDownData.js";
 import create from "../appController/create.js"
+import get from "../appController/get.js"
 
 
 import  addExcellData  from "./addExcellData.js";
@@ -23,6 +24,10 @@ const appController = {
 
     create:(req,res,next)=>{
         create(req,res,next)
+    },
+
+    get:(req,res,next)=>{
+        get(req,res,next)
     },
 
     /* 

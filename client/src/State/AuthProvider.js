@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
     const loginUser = (response) => {
-        const {result} = response
+        const { result } = response;
         setCookie("token", result.token, { maxAge: result.expiresIn });
         setCookie("authData", JSON.stringify(result), {
             maxAge: result.expiresIn,
@@ -134,7 +134,7 @@ export const AuthProvider = ({ children }) => {
     const getDropDownData = async (entity) => {
         let data = await appApiCall("post", "dropDownData", { entity: entity });
         if (data.success === 0) {
-            return ([]);
+            return [];
         } else {
             return data.result;
         }
@@ -158,14 +158,14 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // const readData = async (params) => {
-    //     let data = await appApiCall("get", "read", {}, params);
-    //     if (data.success === 0) {
-    //         return { success: 0, result: null, message: data.message };
-    //     } else {
-    //         return { success: 1, result: data.result, message: data.message };
-    //     }
-    // };
+    const readData = async (params) => {
+        let data = await appApiCall("get", "get", {}, params);
+        if (data.success === 0) {
+            return { success: 0, result: null, message: data.message };
+        } else {
+            return { success: 1, result: data.result, message: data.message,total:data.total };
+        }
+    };
 
     // const updateData = async (payload) => {
     //     let data = await appApiCall("post", "update", payload, {});
@@ -270,11 +270,11 @@ export const AuthProvider = ({ children }) => {
                 authApiCall,
                 appApiCall,
                 // adminApiCall,
-                 getDropDownData,
-                 addNewDropDownData,
+                getDropDownData,
+                addNewDropDownData,
                 // getTableData,
                 createData,
-                // readData,
+                readData,
                 // updateData,
                 // pdfGenrate,
                 // patchData,

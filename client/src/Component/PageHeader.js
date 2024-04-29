@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Row, Col, Button, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose,faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faAdd } from "@fortawesome/free-solid-svg-icons";
 
 const PageHeader = ({
     title,
@@ -14,7 +14,7 @@ const PageHeader = ({
 }) => {
     const windowWidth = window.innerWidth;
     const onCloseClick = () => {
-       const  route =  cancelRoute ? cancelRoute :"dashboard"
+        const route = cancelRoute ? cancelRoute : "dashboard";
         navigate(`/${route}`);
     };
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const PageHeader = ({
         navigate(`/add/${addRoute}`);
     };
 
-    const titleSpane = subTitle ? 15 :20
+    const titleSpane = subTitle ? 15 : 20;
     const isLaptop = true;
     const fontSize = isLaptop ? "1.3rem" : "0.7rem";
 
@@ -38,17 +38,22 @@ const PageHeader = ({
                     width: "85vw",
                 }}
             >
-                <Col xs={6} sm={3} md={2} lg={1}>
-                    <FontAwesomeIcon
-                        icon={faClose}
-                        onClick={onCloseClick}
-                        style={{
-                            cursor: "pointer",
-                            fontSize: fontSize,
-                            color: "#E0115F",
-                        }}
-                    />
-                </Col>
+                {cancelRoute ? (
+                    <Col xs={6} sm={3} md={2} lg={1}>
+                        <FontAwesomeIcon
+                            icon={faClose}
+                            onClick={onCloseClick}
+                            style={{
+                                cursor: "pointer",
+                                fontSize: fontSize,
+                                color: "#E0115F",
+                            }}
+                        />
+                    </Col>
+                ) : (
+                    <Col xs={6} sm={3} md={2} lg={1}></Col>
+                )}
+
                 <Col
                     xs={6}
                     sm={12}
@@ -65,7 +70,7 @@ const PageHeader = ({
                     <>
                         <Col xs={6} sm={12} md={6} lg={8}>
                             <Button
-                                 icon ={<FontAwesomeIcon icon={faAdd} />}
+                                icon={<FontAwesomeIcon icon={faAdd} />}
                                 onClick={onAddClick}
                                 type="link"
                                 style={{ fontSize: "1rem" }}

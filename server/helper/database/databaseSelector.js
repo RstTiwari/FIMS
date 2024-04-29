@@ -16,7 +16,7 @@ const getModelByEntity = (entity) => {
 };
 
 // Middleware function to dynamically pass models based on entities
-const databaseMidleware = (entity) => {
+const databaseSelector = (entity) => {
     // Get models for each entity
     const Model = getModelByEntity(entity);
 
@@ -24,4 +24,4 @@ const databaseMidleware = (entity) => {
     return Model;
 };
 
-export default databaseMidleware;
+export default databaseSelector;

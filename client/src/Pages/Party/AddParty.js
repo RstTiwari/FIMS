@@ -11,7 +11,7 @@ const AddParty = () => {
 
     return (
         <div style={{}}>
-            <PageHeader title={"ADD NEW PARTY"} />
+            <PageHeader title={"ADD NEW PARTY"} cancelRoute={"party"} />
             <PartyForm onFormFinish={onFormFinish} partyData={null} />
         </div>
     );

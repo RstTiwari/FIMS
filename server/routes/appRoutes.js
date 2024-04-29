@@ -4,8 +4,9 @@ import databaseMidleware from "../middleware/database/databaseSelector.js";
 
 const router = express.Router();
 
-router.post("/dropDownData",  appController.dropDownData);  /// no middleware for database
-router.post("/addDropDownData",  appController.addDropDownData);  /// no middleware for database
-router.post("/addData", databaseMidleware, appController.addExcellData);
-router.post("/create" ,databaseMidleware,appController.create)
+router.post("/dropDownData", appController.dropDownData); /// no middleware for database
+router.post("/addDropDownData", appController.addDropDownData); /// no middleware for database
+router.post("/addData", appController.addExcellData);
+router.post("/create", appController.create);
+router.get("/get", appController.get);
 export default router;
