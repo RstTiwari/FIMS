@@ -19,7 +19,7 @@ const Navbar = () => {
                 justifyContent: "right",
                 alignItems: "center",
                 position: "fixed",
-                zIndex: 2,
+                zIndex: 100,
                 width:"80vw",
                 height:"7vh"
             }}
@@ -29,9 +29,9 @@ const Navbar = () => {
                 align={"middle"}
                 style={{ flexGrow: 1, textAlign: "center" }}
             >
-                {/* <Text type="success" style={{ fontSize: "1.5rem" }}>
+                <Text type="success" style={{ fontSize: "1.5rem" }}>
                     Light and Grips Equipment Hirers (India) Pvt. Ltd
-                </Text> */}
+                </Text>
             </Row>
             <Row justify={"center"} align={"middle"}>
                 <Avatar

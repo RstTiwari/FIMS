@@ -9,7 +9,7 @@ const PartyList = () => {
     const { loading,total,tableData, pagination, filters,handleTableChange  } = useTableData("party");
   
     return (
-        <div>
+        <div style={{width:"80vw"}}>
             <PageHeader
                 title={"list of party"}
                 subTitle={"add party"}
@@ -17,10 +17,12 @@ const PartyList = () => {
             />
             <Table
                 columns={partyTableColumns}
-                size="small"
                 dataSource={tableData}
                 bordered ={true}
                 loading ={loading}
+                scroll={{
+                    x:1200,
+                }}
                 onChange={handleTableChange}
                 pagination= {{total:total,hideOnSinglePage:true}}
             />

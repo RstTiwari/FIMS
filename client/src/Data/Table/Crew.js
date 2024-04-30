@@ -1,11 +1,10 @@
-import { render } from "@testing-library/react";
-
+import { TableAction } from "Component/ActionTable";
 const crewTableColumns = [
     {
         title: " NAME",
         dataIndex: "name",
         sorter: true,
-        filters: [{}],
+        // filters: [{}],
         width: "25%",
     },
     {
@@ -59,6 +58,17 @@ const crewTableColumns = [
         title: "COUNTRY",
         dataIndex: "country",
         width: "30%",
+    },
+    {
+        width: 100,
+        fixed:"right",
+        render:(value)=>{
+            return(
+                <>
+                <TableAction />
+                </>
+            )
+        }
     },
    
 ];

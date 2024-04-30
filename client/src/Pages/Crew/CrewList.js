@@ -27,6 +27,7 @@ const CrewList = () => {
                 size="small"
                 dataSource={tableData}
                 bordered={true}
+                scroll={{x:1200,y:700}}
                 loading={loading}
                 onChange={handleTableChange}
                 pagination={{ total: total, hideOnSinglePage: true }}

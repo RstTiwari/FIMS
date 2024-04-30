@@ -25,6 +25,7 @@ const useTableData = (
         }
     };
     const handleTableChange = (newPagination, newFilters) => {
+        console.log(newFilters,"--");
         setPagination({
             pageNo: newPagination.current - 1,
             limit: newPagination.pageSize,
@@ -34,7 +35,7 @@ const useTableData = (
     useEffect(() => {
         fetchData();
     }, [pagination, filters]);
-    return {total, tableData, pagination, filters, handleTableChange };
+    return {loading,total, tableData, pagination, filters, handleTableChange };
 };
 
 export default useTableData;
