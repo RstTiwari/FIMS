@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const vehicleSchema = new mongoose.Schema(
     {
         vehicleClass: {
-            type: "String",
+            type: String,
             required: true,
         },
         registrationNo: {
-            type: "String",
+            type: String,
             required: true,
             unique: true,
         },

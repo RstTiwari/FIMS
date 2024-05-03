@@ -1,17 +1,31 @@
-import mongoose from "mongoose";
+import vehicle from "../../models/appModels/vehicle.js";
+import party from "../../models/appModels/party.js";
+import crew from "../../models/appModels/crew.js";
+import dropdownData from "../../models/appModels/dropdownData.js";
 
 // Helper function to get the model based on entity name
 const getModelByEntity = (entity) => {
-    // Assuming you have a naming convention for your models
-    // For example, if your models follow the pattern 'EntityModel'
-    const modelName = entity;
-
-    // Check if the model has already been registered
-    if (mongoose.models[modelName]) {
-        return mongoose.model(modelName);
-    } else {
-        // If the model doesn't exist, throw an error
-        throw new Error(`Database Schema not found for entity: ${entity}`); // manage a custom error here
+    let model = null;
+    try {
+        switch (entity) {
+            case "crew":
+                model = crew;
+                break;
+            case "party":
+                model = party;
+                break;
+            case "dropdownData":
+                model = dropdownData;
+                break;
+            case "vehicle":
+                model = vehicle;
+                break;
+            default:
+                throw new Error("No model Found");
+        }
+        return model;
+    } catch (error) {
+        console.error(error);
     }
 };
 

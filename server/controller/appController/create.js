@@ -1,10 +1,10 @@
 import databaseSelector from "../../helper/database/databaseSelector.js";
-import crew from "../../models/appModels/crew.js";
 const create = async (req, res) => {
     try {
         const entity = req.body.entity
         const database = databaseSelector(entity);
         const payload = req.body.payload;
+        console.log(payload,database,entity);
         const newData = new database(payload);
         const savedData = await newData.save();
 
