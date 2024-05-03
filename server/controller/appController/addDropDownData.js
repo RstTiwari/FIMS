@@ -29,7 +29,7 @@ const addDropDownData = async (req, res, next) => {
                 message: "Data added successfully",
             });
         } else {
-            const newData = new dropdownData(payload);
+            const newData = new database(payload);
             await newData.save();
             res.status(200).json({
                 success: 1,

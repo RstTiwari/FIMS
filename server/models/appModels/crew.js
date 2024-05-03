@@ -1,5 +1,4 @@
-import mongoose, { Schema } from "mongoose";
-import mongooseAutoPopulate from "mongoose-autopopulate";
+import mongoose from "mongoose";
 
 const crewSchema = new mongoose.Schema(
     {

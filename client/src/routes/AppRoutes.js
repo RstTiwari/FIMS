@@ -1,9 +1,12 @@
 import React, { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+
+
 import Dashbord from "../Pages/Dashbord/Index.js";
 import Layout from "../Component/Layout";
 import AddParty from "Pages/Party/AddParty.js";
 import AddCrew from "Pages/Crew/AddCrew.js";
+import VehicleList from "Pages/Vehicle/VehicleList.js"
 import CrewList from "Pages/Crew/CrewList.js";
 import NotFound from "Component/NotFound.js";
 import AddModule from "module/AddModule.js";
@@ -19,6 +22,7 @@ const Approuter = ({ userName, role }) => {
                 />
                 <Route path="/dashboard" exact element={<Dashbord />} />
                 <Route path="/party" exact element={<PartyList />} />
+                <Route path="/vehicle" exact element={<VehicleList />} />
                 <Route path="/crew" exact element={<CrewList />} />
 
                 {/**Creating  Module Routes */}

@@ -58,18 +58,17 @@ const partySchema = new mongoose.Schema(
         mobNumber1: {
             type: Number,
             required: true,
-            unique:true
+            unique: true,
         },
         mobNumber2: {
             type: Number,
             required: true,
-            unique:true
-
+            unique: true,
         },
         emailId1: {
             type: String,
             required: true,
-            unique:true
+            unique: true,
         },
         emailId2: {
             type: String,
@@ -83,12 +82,12 @@ const partySchema = new mongoose.Schema(
         gstNo: {
             type: String,
             required: true,
-            unique:true
+            unique: true,
         },
         panNo: {
             type: String,
             required: true,
-            unique:true
+            unique: true,
         },
         tanNo: {
             type: String,

@@ -68,7 +68,7 @@ const Sidebar = () => {
                 PARTY
             </Menu.Item>
             <Menu.Item
-                key="vehilce"
+                key="vehicle"
                 icon={<FontAwesomeIcon icon={faTruckFast} />}
                 title="VEHICLE"
             >

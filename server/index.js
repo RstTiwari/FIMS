@@ -64,32 +64,36 @@ const Port = process.env.PORT || 5009;
 
 const MDURLSTRING = process.env.MDURL
 mongoose
-  .connect(MDURLSTRING, {
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    // Create HTTP or HTTPS server based on environment
-    if (process.env.NODE_ENV === "production") {
-      // Read SSL certificates for production
-      const options = {
-        key: fs.readFileSync(process.env.KEY_PATH),
-        cert: fs.readFileSync(process.env.CERT_PATH),
-      };
+    .connect(MDURLSTRING, {
+        useNewUrlParser: true,
+    })
+    .then(() => {
+        // Create HTTP or HTTPS server based on environment
+        if (process.env.NODE_ENV === "production") {
+            // Read SSL certificates for production
+            const options = {
+                key: fs.readFileSync(process.env.KEY_PATH),
+                cert: fs.readFileSync(process.env.CERT_PATH),
+            };
 
-      // Create HTTPS server in production
-      https.createServer(options, app).listen(Port, () => {
-        console.log(`Server is running on the port ${Port} (production)`);
-      });
-    } else {
-      // Create HTTP server in development
-      http.createServer(app).listen(Port, () => {
-        console.log(`Server is running on the port ${Port} (development)`);
-      });
-    }
-  })
-  .catch((e) => {
-    console.log("Database connection failed" + e);
-  });
+            // Create HTTPS server in production
+            https.createServer(options, app).listen(Port, () => {
+                console.log(
+                    `Server is running on the port ${Port} (production)`
+                );
+            });
+        } else {
+            // Create HTTP server in development
+            http.createServer(app).listen(Port, () => {
+                console.log(
+                    `Server is running on the port ${Port} (development)`
+                );
+            });
+        }
+    })
+    .catch((e) => {
+        console.log("Database connection failed" + e);
+    });
 
 
 
