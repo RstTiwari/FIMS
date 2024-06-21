@@ -62,6 +62,8 @@ const PageHeader = ({
                     style={{
                         fontSize: fontSize,
                         textAlign: "center",
+                        color:"orange",
+                        fontSize:"2rem"
                     }}
                 >
                     {title.toUpperCase()}
